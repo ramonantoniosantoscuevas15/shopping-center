@@ -2,12 +2,13 @@ import { HttpClient, httpResource } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Pagination } from '../shared/models/pagination';
 import { Product } from '../shared/models/product';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Shopservice {
-  baseurl = 'https://localhost:7296/api/'
+  baseurl = environment.baseurl
   private http = inject(HttpClient)
   type:string[] = []
   brand:string[] = []
@@ -29,6 +30,7 @@ export class Shopservice {
       next: response => this.type = response
     })
   }
+  readonly productsResouce = httpResource<Pagination<Product>>(() => `${this.baseurl}/'product'`)
 
   readonly bradsResource =  httpResource<string[]>(() => `${this.baseurl}/product/brand`)
   readonly typesResource = httpResource<string[]>(() => `${this.baseurl}/product/type`)

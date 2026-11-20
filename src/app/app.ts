@@ -15,7 +15,9 @@ import { Shop } from './features/shop/shop';
   styleUrl: './app.css',
   imports: [Header, Shop]
 })
-export class App  {
+export class App {
+
+  
   title = 'shopping-center';
 
 }
